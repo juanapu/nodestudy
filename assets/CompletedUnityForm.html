@@ -1,0 +1,1997 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Image + Drawing v15sp3</title>
+<style type="text/css" >
+/*!
+The OnBase Information Management System incorporates jQuery UI software, 
+which is available in source code form at http://jqueryui.com/ pursuant 
+the terms of the below MIT license.  The following MIT licensing terms 
+and copyright notice apply only to the jQuery UI software:
+
+Copyright (c) 2010 Paul Bakaus, http://jqueryui.com/
+
+This software consists of voluntary contributions made by many individuals 
+(AUTHORS.txt, http://jqueryui.com/about) For exact contribution history, see 
+the revision history and logs, available at http://jquery-ui.googlecode.com/svn/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.
+*/
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:before, .ui-helper-clearfix:after { content: ""; display: table; }
+.ui-helper-clearfix:after { clear: both; }
+.ui-helper-clearfix { zoom: 1; }
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+
+
+/*
+ * jQuery UI CSS Framework 1.85
+ */
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-icon { width: 16px; height: 16px; background-image: none; }
+.ui-widget-content .ui-icon {background-image: none; }
+.ui-widget-header .ui-icon {background-image: none; }
+.ui-state-default .ui-icon { background-image: none; }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: none; }
+.ui-state-active .ui-icon {background-image: none; }
+.ui-state-highlight .ui-icon {background-image: none; }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: none; }
+
+/* The default Image Sprite is not used, this is a custom sprite that gets created based on theme colors. */
+/* Used on drop down lists */
+.ui-icon-triangle-1-s { background-position: 0 -2px; }
+/* Used in calendar control.*/
+.ui-icon-circle-triangle-e { background-position: -16px 0; }
+.ui-icon-circle-triangle-w { background-position: -32px 0; }
+
+/* Hide any other image icon we don't use. Since we have a custom image sprite, any other icon must be added to it and positioned above. Note: the selector below cannot wrap multiple lines. */
+.ui-icon-carat-1-n, .ui-icon-carat-1-ne, .ui-icon-carat-1-e, .ui-icon-carat-1-se, .ui-icon-carat-1-s, .ui-icon-carat-1-sw, .ui-icon-carat-1-w, .ui-icon-carat-1-nw, .ui-icon-carat-2-n-s, .ui-icon-carat-2-e-w, .ui-icon-triangle-1-n, .ui-icon-triangle-1-ne, .ui-icon-triangle-1-e, .ui-icon-triangle-1-se, .ui-icon-triangle-1-sw, .ui-icon-triangle-1-w, .ui-icon-triangle-1-nw, .ui-icon-triangle-2-n-s, .ui-icon-triangle-2-e-w, .ui-icon-arrow-1-n, .ui-icon-arrow-1-ne, .ui-icon-arrow-1-e, .ui-icon-arrow-1-s, .ui-icon-arrow-1-se , .ui-icon-arrow-1-sw, .ui-icon-arrow-1-w, .ui-icon-arrow-1-nw, .ui-icon-arrow-2-n-s, .ui-icon-arrow-2-ne-sw, .ui-icon-arrow-2-e-w, .ui-icon-arrow-2-se-nw, .ui-icon-arrowstop-1-n, .ui-icon-arrowstop-1-e, .ui-icon-arrowstop-1-s, .ui-icon-arrowstop-1-w, .ui-icon-arrowthick-1-n, .ui-icon-arrowthick-1-ne, .ui-icon-arrowthick-1-e, .ui-icon-arrowthick-1-se, .ui-icon-arrowthick-1-s, .ui-icon-arrowthick-1-sw, .ui-icon-arrowthick-1-w, .ui-icon-arrowthick-1-nw, .ui-icon-arrowthick-2-n-s, .ui-icon-arrowthick-2-ne-sw, .ui-icon-arrowthick-2-e-w, .ui-icon-arrowthick-2-se-nw, .ui-icon-arrowthickstop-1-n, .ui-icon-arrowthickstop-1-e, .ui-icon-arrowthickstop-1-s, .ui-icon-arrowthickstop-1-w, .ui-icon-arrowreturnthick-1-w, .ui-icon-arrowreturnthick-1-n, .ui-icon-arrowreturnthick-1-e, .ui-icon-arrowreturnthick-1-s, .ui-icon-arrowreturn-1-w, .ui-icon-arrowreturn-1-n, .ui-icon-arrowreturn-1-e, .ui-icon-arrowreturn-1-s, .ui-icon-arrowrefresh-1-w, .ui-icon-arrowrefresh-1-n, .ui-icon-arrowrefresh-1-e, .ui-icon-arrowrefresh-1-s, .ui-icon-arrow-4, .ui-icon-arrow-4-diag, .ui-icon-extlink, .ui-icon-newwin, .ui-icon-refresh, .ui-icon-shuffle, .ui-icon-transfer-e-w, .ui-icon-transferthick-e-w, .ui-icon-folder-collapsed, .ui-icon-folder-open, .ui-icon-document, .ui-icon-document-b, .ui-icon-note, .ui-icon-mail-closed, .ui-icon-mail-open, .ui-icon-suitcase, .ui-icon-comment, .ui-icon-person, .ui-icon-print, .ui-icon-trash, .ui-icon-locked, .ui-icon-unlocked, .ui-icon-bookmark, .ui-icon-tag, .ui-icon-home, .ui-icon-flag, .ui-icon-calendar, .ui-icon-cart, .ui-icon-pencil, .ui-icon-clock, .ui-icon-disk, .ui-icon-calculator, .ui-icon-zoomin, .ui-icon-zoomout, .ui-icon-search, .ui-icon-wrench, .ui-icon-gear, .ui-icon-heart, .ui-icon-star, .ui-icon-link, .ui-icon-cancel, .ui-icon-plus, .ui-icon-plusthick, .ui-icon-minus, .ui-icon-minusthick, .ui-icon-close, .ui-icon-closethick, .ui-icon-key, .ui-icon-lightbulb, .ui-icon-scissors, .ui-icon-clipboard, .ui-icon-copy, .ui-icon-contact, .ui-icon-image, .ui-icon-video, .ui-icon-script, .ui-icon-info, .ui-icon-notice, .ui-icon-help, .ui-icon-check, .ui-icon-bullet, .ui-icon-radio-off, .ui-icon-radio-on, .ui-icon-pin-w, .ui-icon-pin-s, .ui-icon-play, .ui-icon-pause, .ui-icon-seek-next, .ui-icon-seek-prev, .ui-icon-seek-end, .ui-icon-seek-first, .ui-icon-stop, .ui-icon-eject, .ui-icon-volume-off, .ui-icon-volume-on, .ui-icon-power, .ui-icon-signal-diag, .ui-icon-signal, .ui-icon-battery-0, .ui-icon-battery-1, .ui-icon-battery-2, .ui-icon-battery-3, .ui-icon-circle-plus, .ui-icon-circle-minus, .ui-icon-circle-close, .ui-icon-circle-triangle-s, .ui-icon-circle-triangle-n, .ui-icon-circle-arrow-e, .ui-icon-circle-arrow-s, .ui-icon-circle-arrow-w, .ui-icon-circle-arrow-n, .ui-icon-circle-zoomin, .ui-icon-circle-zoomout, .ui-icon-circle-check, .ui-icon-circlesmall-plus, .ui-icon-circlesmall-minus, .ui-icon-circlesmall-close, .ui-icon-squaresmall-plus, .ui-icon-squaresmall-minus, .ui-icon-squaresmall-close, .ui-icon-grip-dotted-vertical, .ui-icon-grip-dotted-horizontal, .ui-icon-grip-solid-vertical, .ui-icon-grip-solid-horizontal, .ui-icon-gripsmall-diagonal-se, .ui-icon-grip-diagonal-se 
+{ 
+	background-image: none !important; 
+}
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
+
+/*
+ * jQuery UI Accordion @VERSION
+ */
+/* IE/Win - Fix animation bug - #4615 */
+.ui-accordion { width: 100%; }
+.ui-accordion .ui-accordion-header { cursor: pointer; position: relative; margin-top: 1px; zoom: 1; }
+.ui-accordion .ui-accordion-li-fix { display: inline; }
+.ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: .5em .5em .5em .7em; }
+.ui-accordion-icons .ui-accordion-header a { padding-left: 2.2em; }
+.ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
+.ui-accordion .ui-accordion-content { padding: 1em 2.2em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
+.ui-accordion .ui-accordion-content-active { display: block; }
+
+/*
+ * jQuery UI Autocomplete @VERSION
+ */
+.ui-autocomplete { position: absolute; cursor: default; font-size: 0.9em; }	
+
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/*
+ * jQuery UI Menu @VERSION
+ */
+.ui-menu {
+	list-style:none;
+	padding: 2px;
+	margin: 0;
+	display:block;
+	float: left;
+}
+.ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+    text-decoration: none;
+    display: block;
+    padding: .2em .4em;
+    line-height: 1.5;
+    zoom: 1;
+}
+.ui-menu .ui-menu-item-wrapper.ui-state-hover,
+.ui-menu .ui-menu-item-wrapper.ui-state-active {
+    font-weight: normal;
+    margin: -1px;
+}
+
+/*
+ * jQuery UI Button @VERSION
+ */
+.ui-button { display: inline-block; position: relative; padding: 0; margin-right: .1em; text-decoration: none !important; cursor: pointer; text-align: center; zoom: 1; overflow: visible; } /* the overflow property removes extra width in IE */
+.ui-button-icon-only { width: 2.2em; } /* to make room for the icon, a width needs to be set here */
+button.ui-button-icon-only { width: 2.2em; } /* button elements seem to need a little more width */
+.ui-button-icons-only { width: 3.4em; } 
+button.ui-button-icons-only { width: 3.7em; } 
+
+.ui-min-button { min-width: 5em; }
+
+/*button text element */
+.ui-button .ui-button-text { display: block; line-height: 1.4;  }
+.ui-button-text-only .ui-button-text { padding: .4em 1em; }
+.ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text { padding: .4em; text-indent: -9999999px; }
+.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: .4em 1em .4em 2.1em; }
+.ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: .4em 2.1em .4em 1em; }
+.ui-button-text-icons .ui-button-text { padding-left: 2.1em; padding-right: 2.1em; }
+/* no icon support for input elements, provide padding by default */
+input.ui-button { padding: .4em 1em; }
+
+/*button icon element(s) */
+.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -8px; }
+.ui-button-icon-only .ui-icon { left: 50%; margin-left: -8px; }
+.ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary { left: .5em; }
+.ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary { right: .5em; }
+.ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary { right: .5em; }
+
+/*button sets*/
+.ui-buttonset { margin-right: 7px; }
+.ui-buttonset .ui-button { margin-left: 0; margin-right: -.3em; }
+
+/* workarounds */
+button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
+
+
+/*
+ * jQuery UI Datepicker @VERSION
+ */
+.ui-datepicker { width: 17em; padding: .2em .2em 0; font-size: 0.9em;display: none;}
+.ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left:2px; }
+.ui-datepicker .ui-datepicker-next { right:2px; }
+.ui-datepicker .ui-datepicker-prev-hover { left:1px; }
+.ui-datepicker .ui-datepicker-next-hover { right:1px; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { font-size:1em; margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
+.ui-datepicker td { border: 0; padding: 1px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi { width:auto; }
+.ui-datepicker-multi .ui-datepicker-group { float:left; }
+.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
+.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
+.ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }
+
+/* RTL support */
+.ui-datepicker-rtl { direction: rtl; }
+.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+.ui-datepicker-cover {
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 200px; /*must have*/
+    height: 200px; /*must have*/
+}
+/*
+ * jQuery UI Dialog @VERSION
+ */
+.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
+.ui-dialog .ui-dialog-titlebar { padding: .4em 1em; position: relative;  }
+.ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .1em 0; } 
+.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+.ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+.ui-dialog .ui-dialog-content { position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: right; }
+.ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
+.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+.ui-front { z-index: 100; }
+
+/*
+ * jQuery UI Progressbar @VERSION
+ */
+.ui-progressbar { height:2em; text-align: left; overflow: hidden; }
+.ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+/*
+ * jQuery UI Resizable @VERSION
+ */
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
+/*
+ * jQuery UI Selectable @VERSION
+ */
+ 
+.ui-selectable-helper { position: absolute; z-index: 100; border:1px dotted black; }
+
+/*
+ * jQuery UI Slider @VERSION
+ */
+.ui-slider { position: relative; text-align: left; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-slider-vertical { width: .8em; height: 100px; }
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+
+/*
+ * jQuery UI Tabs @VERSION
+ */
+.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
+.ui-tabs .ui-tabs-hide { display: none !important; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { background: #aaaaaa/*{bgColorOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/; opacity: .3;filter:Alpha(Opacity=30)/*{opacityOverlay}*/; }
+.ui-widget-shadow { margin: -8px/*{offsetTopShadow}*/ 0 0 -8px/*{offsetLeftShadow}*/; padding: 8px/*{thicknessShadow}*/; background: #aaaaaa/*{bgColorShadow}*/ 50%/*{bgShadowXPos}*/ 50%/*{bgShadowYPos}*/ repeat-x/*{bgShadowRepeat}*/; opacity: .3;filter:Alpha(Opacity=30)/*{opacityShadow}*/; -moz-border-radius: 8px/*{cornerRadiusShadow}*/; -khtml-border-radius: 8px/*{cornerRadiusShadow}*/; -webkit-border-radius: 8px/*{cornerRadiusShadow}*/; border-radius: 8px/*{cornerRadiusShadow}*/; }
+</style>
+<style type="text/css" >
+/*!**************************Confidential and Proprietary*****************************
+* File Name: form.css
+********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
+
+/* Print styles that need to be applied outside the media print section. */
+div.field_print.hidden
+{
+	/* Within Internet Explorer, white-space is not flowed correctly when only in 
+	   the media print section.  This needs to be applied in the global style section.  
+	   The div visibility is controlled in the media print section. Observed in IE8 & IE9.*/	
+	white-space: pre-wrap;
+	border: none;
+}
+
+/* this file should only contain non-theme styling (mostly for layout purposes) */
+
+/* Basic style reset, this normalizes spacing between browsers. */
+*, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, fieldset, form, label, input, table, caption, tbody, tfoot, thead, tr, th, td
+{
+	margin: 0;
+	padding: 0;
+}
+
+form 
+{
+    min-width: 100%;
+    display: inline-block;
+}
+
+/* Override to pre-18 form rendering where the form never stretched in size to match its largest component. */
+form.use-legacy-form-overflow {
+    max-width: 100%;
+}
+
+.no-label-overflow 
+{
+    /* Handle Label Overflow and Form Expansion (SCR #310922)
+        Chrome only: 'word-break: break-word' will nicely wrap labels and paragraphs of any length at the appropriate 
+        whitespace and when needed, will break really long words/paragraphs that don't have any spaces. Works with or
+        without the app server key "UnityFormsToggleMaxFormWidth" enabled.
+
+        However, the other fixes for IE, FF, etc. do not wrap long text that is not in a fixed width
+        control without the app server key "UnityFormsToggleMaxFormWidth" enabled.
+
+        To keep the form presentation consistent when creating a template in the designer (using chrome) and 
+        then opening it at runtime in a different browser, we are limiting the general overflow/expand fix
+        to when the app server key "UnityFormsToggleMaxFormWidth" is enabled.
+
+        However, radio button and checkbox overflow/truncate issues are fixed with or without the key and work in any browser.
+    */
+    word-wrap: break-word; /* IE */
+    word-break: break-word; /* Chrome */
+    overflow-wrap: anywhere; /* FireFox */
+}
+
+body {
+	/* todo: move typography to theme */
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	font-size: 0.99em;
+}
+
+.ui-dialog
+{
+	/* used to prevent dialog content from scaling too large */
+	font-size: .85em;	
+}
+
+
+.ui-dialog-titlebar-close 
+{
+	/* Hide the area where the ui-dialog close button would be. This isn't included in our image sprite. */
+	display: none;
+}
+
+/* orientation_horizontal, containerFloatInherit, and control_clear are all used within panel layout columns to display content horizontally */
+/* explicitly set float left, used in panel layout column for horizontal orientation*/
+div.orientation_horizontal
+{
+    float: left;
+}
+/*Used to display the radio button group options vertically*/
+.radiobutton_vertical
+{
+    display: flex;
+}
+
+.radiobutton_horizontal
+{
+    display: inline-flex;
+}
+
+.radiobutton_vertical, .radiobutton_horizontal
+{
+    align-items: center; /* Vertical alignment */
+}
+
+.radiobutton_label_top
+{
+    flex-direction: column-reverse;
+}
+
+.radiobutton_label_bottom
+{
+    flex-direction: column;
+}
+
+.radiobutton_label_left
+{
+     flex-direction: row-reverse;
+}
+
+.radiobuttonoption_padding_left
+{
+    padding-left: 5px;
+}
+
+.radiobuttonoption_padding_right
+{
+    padding-right: 5px;
+}
+
+span.radiobutton_vertical.radiobutton_label_top, 
+span.radiobutton_vertical.radiobutton_label_bottom
+{
+    align-items: flex-start; /* Keep this two situations aligned to the left */
+}
+
+.radiobutton_label_left.radiobutton_vertical
+{
+    width: fit-content;
+    justify-content: flex-end; /* Fix for IE since it doesn't support fit-content */
+}
+
+/* we want items within a panel layout column to inherit the float of the column so they'll display with the proper orientation */
+.containerFloatInherit
+{
+    float: inherit;
+}
+
+.control_clear
+{
+    clear: left;
+}
+
+td.dialog-content, th.dialog-content
+{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+th.dialog-content
+{
+	padding-top: 5px;
+	padding-bottom: 3px;
+}
+
+h1 
+{
+	padding: 2px;
+}
+
+p
+{
+	padding: 1px;	
+	display: block;
+}
+
+span.paragraph 
+{
+    display: block;
+    padding: 1px 4px 1px 4px;
+    margin: 0px 2px 0px 2px;
+}
+
+.table table
+{
+	width: 100%;
+	padding: 5px;
+	border-collapse: collapse;
+}
+
+/************** Start Nested Table styles and overrides ***************/
+
+div.nestedtable table.top_table
+{
+	width: 100%;
+}
+
+div.nestedtable table.sub_table
+{
+	width: 95%;
+	margin-bottom : 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.nestedtable table
+{
+    border-collapse: collapse;
+}
+
+th.header.ui-widget-header
+{
+	border-width: 1px;
+	border-style: solid;
+}
+
+/* Since the table cell containing the 'Add' button is actually a td element and not a th, 
+    the 'border-collapse: none' style will not be applied, so we must hide the left border to avoid seeing it
+    when the hover style color is applied on a different table header background color.
+*/
+td.header.ui-widget-header
+{
+    border-left-style: none;
+}
+
+th.header.title_column
+{
+	cursor: pointer;
+}
+
+div.nestedtable .tablecolumncontainer
+{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom:0px
+}
+
+/************** End Nested Table styles and overrides ***************/
+
+
+/* Added with set element visiblity action. 
+	We have some of the more specific rules to override other places where display is set. */
+.customaction_hidden, .unityformelement.customaction_hidden, div.unityformelement.customaction_hidden
+{
+	display: none;
+}
+
+.errorarrow
+{
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 1px;
+	position: absolute;
+	z-index: 0;
+	visibility: hidden;
+}
+
+.errortip
+{
+	padding: 3px 3px 3px 3px;
+	font-weight: normal;
+	font-size: .8em;
+}
+
+.errorbrokenrule
+{
+	background: transparent none !important;
+	border-width: 0px !important;
+}
+
+.errorlist
+{
+	list-style: none none outside;
+	margin-left: 0;
+}
+
+input
+{
+	padding: 1px;
+
+}
+
+input.field_input 
+{
+	/* Make sure input sizes don't go past edge of parent. */
+	max-width: 98%;
+
+}
+
+input.field_input.select_input 
+{
+    /* Fallback width, not as accurate as the Sass approach below. */
+    max-width: 88%;
+	/* Force the select list input field max width to always respect the fixed width of the dropdown button. */
+	max-width: calc(98% - 1.1em);	
+}
+
+input.readonly, textarea.readonly
+{
+    opacity: 1;
+}
+
+.comboboxbutton.ui-button
+{
+    width: 1.1em;
+}
+
+.comboboxbutton .ui-button-text
+{
+    display: inline;
+    line-height: normal;
+}
+
+input.field_input.radiobutton_option 
+{
+	border:0px;
+}
+
+input[type=submit], input[type=button], button
+{
+	cursor: pointer;
+	padding: 4px;
+	margin: 3px;
+}
+
+
+.displaystyle_label span.field_input
+{
+	/* Prevent the height from collapsing when the span is empty. */
+	display: inline-block;
+	/* Remove the border from calculated fields with displaystyle=label. */
+	border-width: 0;
+}
+
+.field, .barcodereader
+{
+	position: relative; /* set the position to relative with no modifiers to use this as a container for absolutely positioned elements */
+}
+
+.field, .barcodereader, div.section, div.repeater, div.table, div.nestedtable.top_container, div.nestedtable.sub_container
+{
+    padding: 4px;
+	margin: 2px 2px 4px 2px;
+}
+
+.field textarea
+{
+	width: 90%;
+}
+
+.fit_content_height textarea
+{
+    /* Because of an internal constant, the auto-size plugin can't resize beyond 90,000.  Set an explicit max-height to allow scrolling at that point instead. */
+    max-height: 89999px;
+}
+
+.field_label 
+{
+    display: block;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.bold_label
+{
+    font-weight: bold;
+}
+
+.label_container, .column_label_container 
+{
+    font-weight: normal;
+}
+
+.required::after 
+{
+    margin-left: 2px;
+    color: #ff0000;
+    content: "*";
+}
+
+.required-before::before
+{
+	margin-right: 2px;
+    color: #ff0000;
+    content: "*";
+}
+
+.checkbox 
+{
+    display: flex;
+    align-items: center;
+}
+
+.tablecolumncontainer > .checkbox 
+{
+    /* We need this because of the flex display. */
+    /* Only center checkboxes in tables. */
+    justify-content: center;
+}
+
+.check_label 
+{
+    display: inline-block;
+    padding: 0px 4px 0px 4px;
+    width: calc(100% - 13px); /* IE & Edge - 13px is the size of a check box input */
+}
+
+.radiobuttonoption_label 
+{
+    vertical-align: middle;
+    white-space: normal;
+    /* Eliminate any extra padding from line-height. */
+    line-height: 1em;
+    padding-top: 1px;
+    width: calc(100% - 13px); /* IE & Edge - 13px is the size of a radio button input*/
+}
+
+.radiobutton_option
+{
+	vertical-align: middle;
+}
+
+.option {
+	white-space: nowrap;
+	/* Pad the actual button and label together. */
+	padding: 2px 0px;
+}
+
+/* nested selector which will apply only to elements with a class of 'field_input' inside of an element with a class of 'invalid_field' */
+.invalid_field .field_input
+{
+	border: 8px;
+}
+
+.invalid_signature
+{
+	border: 3px solid #ff0000;
+}
+
+/* Selecting div.header only applies this to sections, and not repeaters or tables, which are th elements. */
+div.section div.header
+{
+	display: block;
+    font-weight: bold;
+	cursor: pointer;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+/* Theme font settings are applied to the header class, make the section label formatted h2 inhert those settings */
+div.section div.header > h2
+{
+    font-size: inherit;
+}
+
+div.section .container
+{
+	padding: 5px 0 5px 5px;
+}
+
+/* page and navigation styling */
+
+.navigation /* Outer layout item */
+{
+    zoom:1;
+    padding-top: 5px;
+
+	/* Outer form element layout style */
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-right: 6px;
+	margin-left: 6px;
+}
+
+.navigation .page_list
+{
+
+	padding: 0px 0px 0px 4px;
+
+}
+
+
+/* page and navigation styling */
+.navigation .page_list li
+{
+	list-style-type: none;
+	float:left;
+	padding: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+	margin-bottom: -2px;
+	font-size: .75em;
+	white-space: nowrap;
+}
+
+.page_visible
+{
+}
+
+.page_hidden
+{
+	display: none;
+}
+
+
+div.pageheader 
+{
+    padding-bottom: 5px;    
+    margin-top: 18px;
+	
+	/* Outer form element layout style */
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-right: 6px;
+	margin-left: 6px;
+
+    border-color: transparent;
+}
+
+div.page /* Outer layout item*/
+{
+	font-size: .80em;
+	min-height: 200px;
+	clear: both;
+	padding-bottom: 6px;
+	padding-top: 6px;
+    
+	/* Outer form element layout style */
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-right: 6px;
+	margin-left: 6px;
+}
+
+/* table and repeater*/
+th.header
+{
+	font-weight: bold;
+}
+
+th.header div.label_container
+{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.align-left
+{
+	text-align: left;
+}
+
+.align-right
+{
+	text-align: right;
+}
+
+/* Clear the horizontal border on repeaters, add / remove button column (ltr) */
+td.ui-widget-content.align-right, th.ui-widget-header.align-right
+{
+	border-left: 0;	
+}
+
+/* Clear the horizontal border on repeaters, add / remove button column (rtl) */
+td.ui-widget-content.align-left,  th.header.ui-widget-header.align-left 
+{
+	border-right: 0;	
+}
+
+/* Clear the bottom border on the last repeater column */
+td.ui-widget-content.align-right, td.ui-widget-content.align-left 
+{
+	border-bottom:0;
+	border-top: 0;
+}
+
+/* table styling */
+div.table
+{	
+	display: block;
+}
+
+/* We apply this class to all caption tags belonging to a table, repater, nested table, or select list. This text contained within the caption tags
+   are read by screen readers. This text is simply the repeater/table title. We apply font-size: 0px so that the text is not visible on the
+   form, but still read by screen readers. If we simply used "visibility: hidden", or "display: none", screen readers would not announce the 
+   caption text. */
+table caption, div.combobox span.selectListDescription
+{
+    font-size: 0;
+}
+
+
+/* repeater styling */
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+div.repeater
+{
+	border-collapse: collapse;
+	display: block;
+}
+
+div.repeater .header
+{
+	margin-bottom: 5px;
+}
+
+.template
+{
+	display: none;
+}
+
+.addItem, .removeItem
+{
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.button_column
+{
+	min-width: 70px;
+}
+
+div.repeater table
+{
+	width: 100%;
+}
+
+div.repeater thead tr
+{
+	height: 40px;
+	margin-top: -25px;
+}
+
+div.table table thead tr th 
+{
+	padding: 4px 0px 4px 0px;
+}
+
+div.repeateritem
+{
+	margin-bottom: 5px;
+}
+
+.repeateritemHidden
+{
+	display: none;
+}
+
+div.repeateritem .removeItem
+{
+	z-index: 1;
+}
+
+tr.repeaterItemRow
+{
+	height: 0px;
+}
+
+tr.repeaterItemRow td
+{
+	border-right: 0px;
+	border-left: 0px;
+}
+
+div.repeater .container .field, div.repeater .container .barcodereader
+{
+	margin-left: 10px;
+	padding: 5px 0 5px 0;
+}
+
+/* Table Column Styling */
+.tablecolumncontainer .field_label
+{
+	display: none;
+}
+
+.toptableheader
+{
+    vertical-align: top;
+}
+
+/* Nested Table - Display column header on every row of the top-table */
+.toptableheader .field_label
+{
+	display: block;
+	padding-bottom: 5px;
+}
+
+.tablecolumncontainer
+{
+	padding: 5px 0 5px 5px;
+	text-align: center;
+}
+
+.tablecolumncontainer .radiobuttongroup
+{
+    display: inline-block;
+    text-align: left;
+}
+
+.tablecolumncontainer .barcodereader .button
+{
+    margin-right: 0px;
+}
+
+.layout_column
+{
+	float: left;
+	overflow: hidden;
+	height: 100%;
+}
+
+.prevent_collapse
+{
+	min-height: 1px;
+}
+
+div.footer /* Outer layout item */
+{
+	clear: both;
+	padding-top: 6px;
+	padding-bottom: 6px;
+
+	/* Outer form element layout style */
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-right: 6px;
+	margin-left: 6px;
+
+    border-color: transparent;
+}
+
+.ui-autocomplete
+{
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1px;
+}
+
+/* note: this prevents the combobox button from wrapping to a second line */
+.combobox
+{
+	white-space: nowrap;
+}
+
+.comboboxbutton
+{
+	margin: 0;
+	height: 100%;
+    right: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* style for all select list combobox's currently only used by sortable attachment */
+.selectlist
+{
+	position: relative;
+	float: initial;
+	white-space: nowrap;
+	padding: 4px;
+	margin: 2px 2px 4px 2px;
+}
+
+/* style to ensure that the select list drop down button mataches the styling of the other select list controls */
+.selectlist .comboboxbutton
+{
+	right: 0px;
+}
+
+.rtl_date
+{
+	text-align: right;
+}	
+
+.action_indicator 
+{
+	position: absolute;top: 45%;left: 45%;z-index: 100;color: #000000;width: 24px;height: 24px;
+}
+
+.highlight
+{
+	background-color: #ffff00;
+}
+
+.hidden
+{
+   display:none;    
+}
+
+.ui-attach-container {
+	margin-bottom: 10px;
+}
+
+.ui-attach-container > table {
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+.ui-attach-container tr {
+    border: 1px solid transparent;
+}
+
+.ui-attach-container th,
+.ui-attach-container td {
+	padding: 0px 3px 0px 3px;
+	text-align: left;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+}
+
+.ui-attach-container .sortable-sort-handle,
+.ui-attach-container .sortable-attachmentname-column {
+    border-left: 0px;
+    border-right: 0px;
+    padding-left: 0px;
+}
+
+.ui-attach-container th.sortable-attachmentname-column {
+	font-weight: normal;
+}
+
+.ui-attach-container > table th:last-child,
+.ui-attach-container > table td:last-child {
+	border-right: none;
+}
+
+tr.ui-sortable-helper {
+	display: table;
+}
+
+.sortable-sort-handle {
+    width: 1.2em;
+}
+
+td.sortable-sort-handle {
+	display: inline-block;
+	height: 100%;
+	font-weight: bold;
+	font-size: 1.2em;
+	vertical-align: middle;
+	text-align: center;
+	cursor: move;
+    padding: 0px;
+}
+
+tbody .sortable-attachmentname-column,
+tbody .sortable-attachmenttype-column {
+    /* File names and attachment type names should be able to wrap to the next line if necessary. */
+    word-break: break-all;
+}
+
+.sortable-attachment-footer .selectlist {
+	display: inline-block;
+	vertical-align: sub;
+}
+
+.upload_message {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.upload_message .errortip
+{
+    display: inline-block;
+}
+
+.show_vertical_scroll
+{
+    overflow-y: scroll;
+}
+
+.section_expanded
+{
+	display: block;
+}
+
+.section_collapsed
+{
+	display: none;	
+}
+
+/* Applied on attachment and barcode buttons that show a file import/upload dialog. 
+	These are styled as buttons that cover the default browser input file type. */
+span.file_input_button
+{
+	position: relative; 
+	display: inline-block; 
+	overflow: hidden; 
+	cursor: pointer;
+}
+
+span.file_input_button span.ui-button-text
+{
+	cursor: pointer;
+}
+
+.file_input
+{
+	height: 100%; width: 200%; 
+	line-height: 30px; 
+	top: 0; 
+	filter: alpha(opacity=0); 
+	position: absolute; 
+	cursor: pointer; 
+	opacity: 0;
+}
+
+/* Different styles are applied depending on direction: rtl/ltr. */
+.file_input.align-right
+{
+	right: 0;
+}
+
+.file_input.align-left
+{
+	left: 0;
+}
+
+div.pad.field_input
+{
+	background-color: #ffffff;
+}
+
+p.sigSpacer
+{
+	position: absolute; 
+	bottom: 20px; 
+	border-bottom: 2px solid #ccc; 
+	display: block;
+}
+
+.integrationerror 
+{
+	padding: 10px;
+	text-align:center;
+}
+
+.captcha-placeholder
+{
+    height: 100px;
+    width: 100px;
+}
+
+/* The jquery ui-button class centers text by default. Since we plan on wrapping words we want to
+   enforce rtl/ltr to avoid floating text. */
+.ui-button-label-wrap 
+{
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: anywhere; /* Firefox */
+    max-width: 99%;
+    text-align: left;
+    display: inline-block;
+    word-break: break-word;
+    -webkit-appearance: none;
+}
+
+.hyperlink
+{
+    text-decoration: none;
+}
+
+div.fmtlabel a, div.fmtlabel a.hyperlink
+{ 
+    color: inherit; 
+}
+
+/* do not inherit unity forms theme font settings with the datepicker */
+.ui-datepicker-header.ui-widget-header 
+{ 
+    font-size: 1.2em; 
+}
+
+/* These values are derived from JQuery UI's css class: .ui-button-text-only .ui-button-text
+    */
+.ui_dialog_cancel_button
+{ 
+    padding: .4em 1em;
+}
+
+.hide_element
+{
+    display: none;
+}
+
+.ui-menu-item.dropdown_item
+{
+    margin: -1px; /* jquery UI changes the margin to -1px for ui-state-active which is used by their combobox */
+    border: 1px solid transparent;
+}
+
+div.page .ui-menu-item.dropdown_item
+{
+    font-size: calc(1em / 0.8); /* Update 0.8 if the page's font-size changes as well */
+}
+
+.dropdown_item_image
+{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+}
+
+/*For any jQuery dialogs, their background overlay don't fit the entire screen unless we mark the position as fixed.*/
+.ui-widget-overlay.ui-front
+{
+    position: fixed;
+}
+
+.remove_button_wrapper::before {
+	content: '[';
+}
+
+.remove_button_wrapper::after {
+	content: ']';
+}
+
+.sortable-attachment-footer label {
+	display: block;
+}
+
+/*  Responsiveness rules. 
+	------------------------------------------------------------------------------------- */
+@media screen and (max-width: 768px), screen and (max-device-width: 768px) { /* Device-width is necessary for retaining styles when mobile devices are oriented landscape. */
+	/* Cut margins/padding to save horizontal space. */
+	div .page, div.pageheader, div.footer {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	/* Fit the form to the body element. If any elements are too wide, they'll spill past the page. */
+	/* This is less attractive for desktop, but for narrowed mobile devices it's preferable so other form elements like paragraphs are not stretched wider. */
+    form.form {
+        width: 100%;
+        /* Handle Label Overflow and Form Expansion (SCR #310922)
+            Chrome only: 'word-break: break-word' will nicely wrap labels and paragraphs of any length at the appropriate 
+            whitespace and when needed, will break really long words/paragraphs that don't have any spaces. Works with or
+            without the app server key "UnityFormsToggleMaxFormWidth" enabled.
+
+            However, the other fixes for IE, FF, etc. do not wrap long text that is not in a fixed width
+            control without the app server key "UnityFormsToggleMaxFormWidth" enabled.
+
+            To keep the form presentation consistent when creating a template in the designer (using chrome) and 
+            then opening it at runtime in a different browser, we are limiting the general overflow/expand fix
+            to when the app server key "UnityFormsToggleMaxFormWidth" is enabled.
+
+            However, radio button and checkbox overflow/truncate issues are fixed with or without the key and work in any browser.
+        */
+        word-wrap: break-word; /* IE */
+        word-break: break-word; /* Chrome */
+        overflow-wrap: anywhere; /* FireFox */
+    }
+}
+</style>
+<style type="text/css" >
+.hsi-notificationbar {
+    position: fixed;
+    max-height: 62px;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    border: none;
+    white-space: nowrap;
+    background: linear-gradient(-90deg, rgba(251, 185, 4, 1) 0%,rgba(251, 185, 4, 1) 40%,rgba(238, 202, 104, 1) 100%);
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    padding: .2em 0em .2em .2em;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'sans-serif';
+}
+
+    .hsi-notificationbar .hsi-notificationbaritem {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: 16.2px; /* Determined by seeing what the supported browsers set as 'auto' and using the consistent value that looks good across them. */
+        min-height: 1.25em;
+        color: black;
+        border: 0;
+        max-width: 100%;
+        padding: .05em;
+    }
+
+        .hsi-notificationbar .hsi-notificationbaritem span.ui-icon-alert {
+            flex-basis: 20px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            background-repeat: no-repeat;
+        }
+
+        .hsi-notificationbar .hsi-notificationbaritem .message-label,
+        .hsi-notificationbar .hsi-notificationbaritem .message-text {
+            text-overflow: ellipsis;
+        }
+
+        .hsi-notificationbar .hsi-notificationbaritem .message-label {
+            flex-basis: auto;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hsi-notificationbar .hsi-notificationbaritem .message-text {
+            flex-basis: 100%;
+            font-weight: 400;
+        }
+
+</style>
+<style type="text/css" >
+.dropdown_menu 
+{
+    width: auto;
+    position: absolute;
+    display: none;
+    outline: 0;
+}
+
+.dropdown_item 
+{
+    cursor: pointer;
+}
+
+</style>
+<style type="text/css" media="print">
+/*!**************************Confidential and Proprietary*****************************
+* File Name: print.css
+********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
+
+/* This class is used so that a very wide form isn't allowed to stretch outside of a printed
+   page's width. On the unlikely chance that we create a FormInstance with a different form id, 
+   we'll also include the class identifier, since this class is very important.*/
+#form, .form 
+{
+    /*Remove the styles added in form.css*/
+    min-width: 0;
+    display: block;
+}
+
+div.page.print_break_between_pages 
+{
+    /* Apply page breaks before pages by only if the css class is specified. */
+    page-break-before: always;
+}
+
+div.page.first_page
+{
+	/* Don't break before the first page. */
+	page-break-before: avoid;
+}
+
+/* The padding in the Header / Footer is unneccesary for printing. The Footer whitespace even caused an extra blank page sometimes. NOT COOL. */
+#header, .pageheader, #footer, .footer {
+    /* This styling will make the height of the Header / Footer 0px if there is nothing. 
+       - The button is hidden in the footer when printing, if there is nothing else, that whole section will collapse.
+       - If the Label is Empty in the header and there is nothing else, that whole section will collapse.
+    */
+    min-height: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border: 0px !important;
+}
+
+/* Remove the padding top/bottom padding in the H1 element so that if the Header is empty it doesn't take up any space. */
+h1
+{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+div.page_hidden
+{
+	/* Show active and inactive pages when printing. */
+	display: block;
+}
+
+div.page.customaction_hidden
+{
+	/* Don't show pages hidden by custom actions. */
+	display: none;
+	/* Prevent adding page breaks for hidden pages. */
+	page-break-before: avoid;
+	page-break-after: avoid;
+}
+
+input[type=text].field_input, textarea.field_input, button.comboboxbutton
+{
+	/* Hide normal text input fields when printing */
+	display: none;
+}
+
+input[type=checkbox].field_input
+{
+	border: none;
+}
+
+.layout_column > .unityformelementcontentcontainer 
+{
+    max-width: 100%;
+}
+
+.layout_column > .unityformelementcontentcontainer > *
+{
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+div.field_print.hidden
+{
+    /* Display hidden print elements when printing */
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.signature canvas, .signature img, .sigWrapper, .signature object, img, .drawing canvas
+{
+	/* Using max-width to 100% will cause the signature image, canvas, or object 
+		to shrink when available size is less than the current width of the element. 
+		Each selector applies to a different form save state (new vs existing) or signature mode (canvas vs flash).
+		*/
+	max-width: 100%;
+}
+
+.sigWrapper
+{
+	/* Adds more space between the signature control and other controls beneath it. 
+        Previously, some browsers did not have space bewteen the signature control and other
+        controls beneath it. */
+	padding-bottom: 7px;
+}
+
+div.section div.container
+{
+	/* The jQuery toggle("blind") call in initializeSectionBehavior() adds an inline style for display , 
+		added the !important property to override the inline style*/
+	display: block !important;	
+}
+	
+.navigation, .ui-button, .ui-button-text, .tool, .swatch, .thickness, span.button.file_input_button, .barcodereader
+{
+	/* Hide functional controls when printing.  Keeps buttons and page navigation, and drawing control items hidden. */
+	display: none;
+}
+
+.sigNav
+{
+	/* The signature button styles are added inline by the external library.  Force override them for printing to be hidden. */
+	display: none !important;
+
+}
+	
+div.page.unityformelementcontainer
+{
+	/* By default we set a min height for pages, this can just cause extra pages unnecessarily when printing */
+	min-height:0;
+}
+
+.field, .section, .panel, .paragraph, div.repeater div.section, div.repeater div.section div.header, div.repeater thead tr th.header, div.repeater thead tr td.header, div.table, div.repeater, div.nestedtable
+{
+    /* 
+	Don't force a page break inside the header of a section, repeater or table
+	For fields, we want to keep the label with the input element on the same page.
+	For other containers and paragraphs, also try to keep everything on the same page.
+    We also try to keep Tables, Repeaters and Nested Tables from breaking between pages.
+	*/
+    page-break-inside: avoid;
+}
+
+.first_page > div.table:first-child, .first_page > div.repeater:first-child, .first_page > div.nestedtable:first-child,
+.print_break_between_pages > div.table:first-child, .print_break_between_pages > div.repeater:first-child, .print_break_between_pages > div.nestedtable:first-child 
+{
+    /* BUT if this Table, Repeater / Nested table is the first control a the page, we want it to avoid being put on the next page. */
+    page-break-inside: auto;
+}
+
+div.section div.section_expanded > .unityformelement:first-child {
+    /*
+    Allows a page break in the first child of a section (for certain controls).
+    Without this, if the first child is larger than the page box, the page-break-inside: avoid;
+    rule on section controls must be dropped and a page break is placed after the header, even
+    though the content has to be broken anyway.
+    */
+    page-break-inside: auto;
+}
+	 
+div.section div.header, div.repeater div.section div.header
+{
+	/* Don't force a page break immediately after the header of a section */
+	page-break-after: avoid;
+}
+	 
+div.repeater thead tr
+{	 	
+	border-collapse: collapse;
+}
+
+th.button_column, td.button_column
+{
+	/* Override the button column when printing, since the button is not displayed. */
+	min-width: 0;
+}
+
+/* nested tables can be hidden and shown like sections by collapsing the header, 
+	we apply the hidden class to the header and body */
+tr.columnHeader.hidden
+{
+	display: table-row;
+}
+
+tbody.ui-collapsible.hidden
+{
+	display: table-row-group;
+}
+
+.signature .modalButtonText 
+{
+    /* Hide the 'Click to Sign Document' text. */
+    display: none;
+}
+
+.prevent_print 
+{
+    /* Since we can't suppress the browser keyboard shortcut ctrl+p and or address bar print prevention, don't show anything on print output.*/
+    display: none !important;
+}
+
+.captcha
+{
+    /* Do not print CAPTCHA controls. */
+    display: none;
+}
+
+.remove_button_wrapper
+{
+    /* Do not print the [Remove] buttons on attachments */
+    display: none;
+}
+
+.sortable-attachment-footer
+{
+	/* Do not print the sortable attachment footer */
+	display: none;
+}
+
+.sortable-action-column
+{
+	/* Do not print the sortable attachment action columns */
+	display: none;
+}
+
+.sortable-attachmenttype-column
+{
+	/* Do not add the border to the right of the second column if it has been collapsed. */
+	border: none !important;
+}
+
+.sortable-sort-handle
+{
+	/* Do not print the sortable attachment drag and drop handle */
+	display: none !important;
+}
+</style>
+<style type="text/css" >
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #d6e9ff;background: #fcfdfd none 50% bottom repeat-x; color: #1f5f8e; }
+.ui-widget-content a { color: #1f5f8e;}
+.ui-widget-header { border: 1px solid #46596b; background: #d6e9ff none 50% 50% repeat-x; color: #1d5987; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.2em; }
+.ui-widget-header a { color: #15428b; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #d6e9ff; background: #d6e9ff none 50% 50% repeat-x; color: #1d5987; outline: none; }
+.ui-widget-header .ui-state-default { border: 1px solid #d6e9ff; background: #d6e9ff none 50% 50% repeat-x; font-weight: bold; color: #1d5987; outline: none; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {color: #1d5987; text-decoration: none; outline: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, div.ui-menu-item-wrapper.ui-state-active
+				{ border: 1px solid #d6e9ff; background: #ffd748 none 50% 50% repeat-x; font-weight: bold; color: #1f5f8e; outline: none; }
+.ui-widget-header .ui-state-hover a { color: #1f5f8e; text-decoration: none; outline: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #d6e9ff; background: #feb65a none 50% 50% repeat-x; font-weight: bold; color: #1d5987; outline: none; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #1f5f8e; outline: none; text-decoration: none; }
+.ui-state-active a.page_tab, .ui-state-active a.page_tab:link, .ui-state-active a.page_tab:visited { color: #1d5987; outline: none; text-decoration: none; }
+.ui-widget :active { outline: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid #fb8f3d; background: #fbc84f none 50% top repeat-x; color: #185381; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a { color: #185381; }
+.ui-state-error, .ui-widget-content .ui-state-error, .pageheader .ui-state-error, .footer .ui-state-error {border: 1px solid #b73838; background: #d29d9d none 50% top repeat-x; color: #b73838; }
+.ui-state-error a, .ui-widget-content .ui-state-error a, .pageheader .ui-state-error a, .footer .ui-state-error a { color: #b73838; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text, .pageheader .ui-state-error-text, .footer .ui-state-error-text { color: #b73838; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+
+.ui-menu { border: 1px solid #1f5f8e;background: #fcfdfd none 50% bottom repeat-x; color: #1f5f8e; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.ui-button, .ui-widget-content .ui-button { background: #d6e9ff; color: #1f5f8e; border: 1px solid #1f5f8e }
+.ui-button { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.ui-widget-content .ui-button a {color: #1f5f8e;}
+.ui-widget-content .comboboxbutton { background: #d6e9ff; color: #1f5f8e; border: 1px solid #1f5f8e }
+input.ui-state-default.ui-button.addItem { border-color: #1d5987; }
+input.ui-state-default.ui-button.removeItem { border-color: #1f5f8e; }
+.top_table input.ui-state-default.ui-button { background: #d6e9ff; color: #1d5987; }
+.sub_table input.ui-state-default.ui-button { background: #d6e9ff; color: #1d5987; }
+input.ui-state-default.ui-button:hover, input.ui-state-default.ui-button:focus{ background: #ffd748; color: #1f5f8e; }
+.ui-button:hover, .ui-button:focus, .ui-widget-content .ui-button:hover, span.file_input_button.file_input_focused { background: #ffd748; color: #1f5f8e; border: 1px solid #1f5f8e}
+.ui-widget-content .comboboxbutton:hover { background: #ffd748; color: #1f5f8e; border: 1px solid #1f5f8e}
+.ui-widget-content .ui-button:hover a {color: #1f5f8e;}
+.comboboxbutton { font-size: 1.0em; }
+.modalButton:hover { border: 3px solid #ffd748;}
+.modalButtonText p { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1em;}
+/* Non- jQuery UI based Elements 
+----------------------------------*/
+body { background: #46596b; }
+th.header.title_column:hover,th.header.title_column:hover + td.header.button_column{ background: #ffd748 none 50% 50% repeat-x; font-weight: bold; color: #1f5f8e; outline: none; }
+table.top_table thead tr th.header, table.top_table thead tr td.header { background: #d6e9ff; color: #1d5987; }
+table.sub_table thead tr th.header, table.sub_table thead tr td.header  { background-color: #d6e9ff;color: #1d5987;}
+.header { background: #d6e9ff; color: #1d5987; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.2em; }
+table.top_table th.header.ui-widget-header, table.top_table td.header.ui-widget-header, table.top_table {		border-color: #d6e9ff;}
+table.sub_table th.header.ui-widget-header, table.sub_table td.header.ui-widget-header, table.sub_table {		border-color: #d6e9ff;}
+th.header.ui-widget-header, td.header.ui-widget-header,  table.top_table, table.sub_table {		border-color: #d6e9ff;}
+div.pageheader { background: #46596b; color: #ffffff; }
+div.pageheader a, .footer a { color: #ffffff}
+h1 { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.6em; }
+p, span.paragraph { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.field_label { font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.field_input, .field_print { background: #fcfdfd; color: #1f5f8e; border: 1px solid #1f5f8e; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.attached_document {font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.required::after, .required-before::before { color: #ff0000; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.pageheader .displaystyle_label label { color: #ffffff;} 
+.pageheader .displaystyle_label span.field_input { background: #46596b;color: #ffffff; } 
+.page .displaystyle_label label, .page th.tablecolumnheader.displaystyle_label { color: #1f5f8e;} 
+.page .displaystyle_label span.field_input { background: #fcfdfd;color: #1f5f8e; } 
+.footer .displaystyle_label label { color: #ffffff;} 
+.footer .displaystyle_label span.field_input { background: #46596b;color: #ffffff; } 
+input:focus.field_input, textarea:focus.field_input { background: #fcfdfd; color: #1f5f8e; }
+.field_label.reverse_lookup, th.tablecolumnheader.reverse_lookup { color: #1f5f8e; }
+.field_input.reverse_lookup { background: #fcfdfd; color: #1f5f8e; border: 1px solid #1f5f8e; }
+input:focus.field_input.reverse_lookup, textarea:focus.field_input.reverse_lookup { background: #fcfdfd; color: #1f5f8e; }
+.footer { background: #46596b; color: #ffffff; }
+.navigation {background: #46596b; color: #ffffff; border:1px solid #46596b;}
+.tablecolumnheader { background-color: #fcfdfd; color: #1f5f8e; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+.ui-errorlistbackground {background: #f9f77c;}
+.ui-validationfailed {color: #b73838;}
+.ui-validationpassed {color: #1f5f8e;}
+input.readonly, textarea.readonly { background: #eeeeee; color: #999999; }
+label.readonly { color: #999999; }
+.integrationerror{ background:#f9f77c; color:#b73838; }
+.radiobuttonoption_label { color: #1f5f8e; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; font-size: 1.0em; }
+input.radiobutton_option, input.radiobutton_option:focus { background: none; }
+.attachment .attached > a, tbody .sortable-attachmentname-column > a { color:#004ec2; }
+.attachment a.remove-link { color:#9c3030; }
+</style>
+<style type="text/css" >
+</style>
+<style type="text/css" >
+</style>
+<script type="text/javascript">
+var translatedStrings = { 
+'STR_UC_UFORMS_INVALID_FIELD_ERROR' : 'One or more fields are invalid.'
+, 'STR_UC_UFORMS_REMOVE' : 'Remove'
+, 'STR_UC_UFORMS_REMOVE_TOOLTIP' : 'Remove the link from the form.'
+, 'STR_UC_UFORMS_PENDING' : '(Pending)'
+, 'STR_UC_UFORMS_SAVING_TITLE' : 'Saving form'
+, 'STR_UC_UFORMS_SAVING_MESSAGE' : 'The form is being saved.'
+, 'STR_UC_UFORMS_FORMSTOREDWITHWARNINGS' : 'The following warnings occurred while submitting the form.  The form was stored successfully.'
+, 'STR_UC_UFORMS_ERROR_SAVING' : 'There was an error saving the form.'
+, 'STR_UC_UFORMS_INFINITELOOP' : 'An infinite loop was detected in custom actions.  Aborting the current action.'
+, 'STR_UC_UFORMS_SELECTKEYSET' : 'Select Keyset'
+, 'STR_UC_UFORMS_SELECT' : 'Select'
+, 'STR_UC_UFORMS_REVERSELOOKUP_NOMATCHESFORSEARCH' : 'There were no reverse lookup matches found for the specified search fields.'
+, 'STR_UC_UFORMS_REVERSELOOKUP_NOSEARCHVALUES' : 'There were no search values entered in the reverse lookup fields.'
+, 'STR_UC_UFORMS_REVERSELOOKUP_SELECTMATCH' : 'Select Reverse Lookup Match'
+, 'STR_RC_SUN' : 'Su'
+, 'STR_RC_MON' : 'Mo'
+, 'STR_RC_TUE' : 'Tu'
+, 'STR_RC_WED' : 'We'
+, 'STR_RC_THU' : 'Th'
+, 'STR_RC_FRI' : 'Fr'
+, 'STR_RC_SAT' : 'Sa'
+, 'STR_UC_UFORMS_SUNDAY' : 'Sunday'
+, 'STR_UC_UFORMS_MONDAY' : 'Monday'
+, 'STR_UC_UFORMS_TUESDAY' : 'Tuesday'
+, 'STR_UC_UFORMS_WEDNESDAY' : 'Wednesday'
+, 'STR_UC_UFORMS_THURSDAY' : 'Thursday'
+, 'STR_UC_UFORMS_FRIDAY' : 'Friday'
+, 'STR_UC_UFORMS_SATURDAY' : 'Saturday'
+, 'STR_RC_JANUARY' : 'Jan'
+, 'STR_RC_FEBRUARY' : 'Feb'
+, 'STR_RC_MARCH' : 'Mar'
+, 'STR_RC_APRIL' : 'Apr'
+, 'STR_RC_MAY' : 'May'
+, 'STR_RC_JUNE' : 'Jun'
+, 'STR_RC_JULY' : 'Jul'
+, 'STR_RC_AUGUST' : 'Aug'
+, 'STR_RC_SEPTEMBER' : 'Sep'
+, 'STR_RC_OCTOBER' : 'Oct'
+, 'STR_RC_NOVEMBER' : 'Nov'
+, 'STR_RC_DECEMBER' : 'Dec'
+, 'STR_UC_UFORMS_NEXT' : 'Next'
+, 'STR_UC_UFORMS_PREV' : 'Previous'
+, 'STR_UC_UFORMS_OK' : 'OK'
+, 'STR_UC_UFORMS_TODAY' : 'Today'
+, 'STR_UC_UFORMS_REQUIRED_ERROR' : 'This field is required.'
+, 'STR_UC_UFORMS_CURRENCY_ERROR' : 'The positive\u002fnegative currency value must be of the format:'
+, 'STR_UC_UFORMS_VALUEMUSTEXIST_ERROR' : 'The value must exist in the Data Set.'
+, 'STR_UC_UFORMS_ENTERTEXT' : 'Enter text'
+, 'STR_UC_UFORMS_CANCEL' : 'Cancel'
+, 'STR_UC_UFORMS_UPLOADFAILED' : 'Upload failed.'
+, 'STR_UC_UFORMS_FILE_UPLOADFAILED' : 'Failed to upload file: \u0022{0}\u0022'
+, 'STR_UC_UFORMS_FILE_UPLOADSUCCESS' : '\u0022{0}\u0022 was uploaded successfully.'
+, 'STR_UC_UFORMS_INITIAL_UPLOAD_STATUS' : 'Starting Upload...'
+, 'STR_UC_UFORMS_BARCODEREADFAILED' : 'Failed to read bar code.'
+, 'STR_UC_UFORMS_BARCODEREADSUCCESS' : 'Successfully read bar code.'
+, 'STR_UC_UFORMS_ERROR_EXECUTEUNITYSCRIPT' : 'There was an error executing a Unity Script.'
+, 'STR_UC_UFORMS_VIEWATTACHEDDOCUMENTTOOLTIP' : 'Click here to view the attached document.'
+, 'STR_UC_UFORMS_PREVIEWATTACHEDDOCUMENTTOOLTIP' : 'Click here to preview the attached document.'
+, 'STR_UC_UFORMS_ATTACHMENT_NEWFILEUPLOAD' : 'New File'
+, 'STR_UC_UFORMS_ATTACHMENT_EXISTINGFILEUPLOAD' : 'Existing Document'
+, 'STR_UC_UFORMS_ATTACHMENT_BUTTON_TOOLTIP' : 'Add attachment(s) to the field for attachment type {0}.'
+, 'STR_UC_UFORMS_ATTACHMENT_BUTTON_READONLY_TOOLTIP' : 'The field is marked as read-only, no attachments can be added.'
+, 'STR_UC_UFORMS_ATTACHMENT_BUTTON_FULFILLED_TOOLTIP' : 'All allowed attachments have been added for attachment type {0}.'
+, 'STR_UC_UFORMS_ATTACHMENT_SORTINSTRUCTION' : 'Press spacebar to select this attachment and use the arrow keys to reorder.'
+, 'STR_UC_UFORMS_TIME' : 'Time :'
+, 'STR_UC_UFORMS_ATTACHED_DOCUMENT' : 'Acquired Document'
+};
+</script>
+</head>
+<body>
+<form id="form" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit form" method="post">
+  <div id="header" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer pageheader ui-widget-content">
+    <h1 class="label_container">
+      <span class="bold_label">Image + Drawing v15sp3</span>
+    </h1>
+  </div>
+  <div id="page1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer page ui-widget-content first_page">
+    <div id="id8" dir="ltr" class="unityformelement containerFloatInherit field">
+      <label for="id8_input" class="field_label bold_label required">ID #</label>
+      <input id="id8_input" type="text" aria-required="true" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" value="9" />
+      <div class="field_print ui-widget-content hidden">9</div>
+    </div>
+    <div id="lname9" dir="ltr" class="unityformelement containerFloatInherit field">
+      <label for="lname9_input" class="field_label bold_label">LName</label>
+      <input id="lname9_input" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="20" value="WEEKND" />
+      <div class="field_print ui-widget-content hidden">WEEKND</div>
+    </div>
+    <div id="element4" dir="ltr" class="unityformelement readonly containerFloatInherit field datepicker">
+      <label for="element4_input" class="field_label bold_label">Document Date</label>
+      <input id="element4_input" type="text" aria-required="false" tabindex="0" dir="ltr" aria-describedby="element4_descriptionText" readonly="readonly" class="field_input ui-widget-content readonly systemproperty" value="08/30/2017" />
+      <div class="field_print ui-widget-content hidden">08/30/2017</div>
+      <div id="element4_descriptionText" class="hidden">The date value should be of the format: M/d/yyyy.</div>
+    </div>
+    <div id="image7" class="unityformelement containerFloatInherit">
+      <img src="410" alt="" />
+    </div>
+    <div id="drawing6" dir="ltr" class="unityformelement containerFloatInherit field drawing">
+      <label class="field_label bold_label">Untitled Drawing</label>
+      <ol class="toolbox">
+        <li>
+          <div class="tool drawing-pen"></div>
+        </li>
+        <li>
+          <div class="tool drawing-text"></div>
+        </li>
+        <li>
+          <div class="tool drawing-eraser"></div>
+        </li>
+      </ol>
+      <div style="clear:both;"></div>
+      <canvas class="surface" width="500" height="300" style="background-image: url('373');">Your browser does not support the drawing control.</canvas>
+      <img src="373" class="hidden drawingImage" />
+      <div style="clear: both;"></div>
+      <ol class="palette">
+        <li>
+          <div class="swatch" style="background-color: #000000;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #7F7F7F;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #880015;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #ED1C24;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #FF7F27;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #FFF200;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #22B14C;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #00A2E8;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #3F48CC;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #A349A4;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #FFFFFF;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #C3C3C3;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #B97A57;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #FFAEC9;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #FFC90E;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #EFE4B0;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #B5E61D;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #99D9EA;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #7092BE;"></div>
+        </li>
+        <li>
+          <div class="swatch" style="background-color: #C8BFE7;"></div>
+        </li>
+      </ol>
+      <div class="thicknesses">
+        <div class="thickness t1">
+          <div class="thickness_line" style="height: 1px;">&nbsp;</div>
+        </div>
+        <div class="thickness t3">
+          <div class="thickness_line" style="height: 3px;">&nbsp;</div>
+        </div>
+        <div class="thickness t5">
+          <div class="thickness_line" style="height: 5px;">&nbsp;</div>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+      <input class="clear_button ui-state-default ui-button bold_label" type="button" value="Clear" tabindex="0" />
+      <input class="undo_button ui-state-default ui-button bold_label" type="button" value="Undo" tabindex="0" />
+    </div>
+  </div>
+  <div id="footer" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer footer ui-widget-content">
+    <div id="submit" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
+      <input type="submit" tabindex="0" value="Submit" class="bold_label button ui-state-default ui-button-label-wrap ui-button" disabled="disabled" />
+    </div>
+  </div>
+</form></body>
+</html>
+<div>test part here</div><div>test part here</div><div>test part here</div><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img><img src="./assets/abstraction.JPG">test part here</img>
